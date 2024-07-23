@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import useOrder from "../useOrder";
 import { useRouter } from "next/navigation";
-import { ArrowBigLeft } from "lucide-react";
 import SingleOrderTable from "./SingleOrderTable";
 import { Separator } from "@/components/ui/separator";
 import OrderChangeStatus from "./OrderChangeStatus";
@@ -18,7 +17,10 @@ export default function SinglePage({ params }: { params: { id: string } }) {
       <SingleOrderHeader single={single} />
       <SingleOrderTable single={single} />
       <Separator />
-      <OrderChangeStatus single={single} params={params} />
+
+      <Suspense fallback={<p>Loading....</p>}>
+        <OrderChangeStatus single={single} params={params} />
+      </Suspense>
     </div>
   );
 }

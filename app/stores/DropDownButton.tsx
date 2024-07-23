@@ -11,7 +11,7 @@ import { EyeIcon, LucideEdit } from "lucide-react";
 import React from "react";
 import { LuMoreVertical } from "react-icons/lu";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { FoodList, TypeRestaurant } from "../types";
+import { FoodList } from "../types";
 import { useRouter } from "next/navigation";
 
 interface Props {

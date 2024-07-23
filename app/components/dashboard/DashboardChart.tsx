@@ -1,6 +1,7 @@
 "use client";
 import useOrder from "@/app/orders/useOrder";
 import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 import {
   XAxis,
@@ -22,7 +23,13 @@ const colors = {
 export default function DashboardChart() {
   const { sortedOrder, isLoading, ordersError } = useOrder();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <Card className="w-full h-80 bg-gray-100">
+        <Skeleton className="w-full h-80 bg-gray-100" />
+      </Card>
+    );
+
   if (ordersError) return <p>{ordersError?.message}</p>;
 
   const confirmedOrders = sortedOrder?.filter(
@@ -30,17 +37,14 @@ export default function DashboardChart() {
   );
 
   const data = confirmedOrders?.map((order) => {
-    const tooltip = {
+    return {
       name: new Date(order.date)
         .toDateString()
         .split(" ")
         .splice(1, 2)
         .join(" "),
-      // name: order.address.name.split(" ").at(0),
       price: order.totalAmount,
     };
-
-    return tooltip;
   });
 
   return (
@@ -56,18 +60,10 @@ export default function DashboardChart() {
             unit="$"
             tick={{ fill: colors.text }}
             tickLine={{ stroke: colors.text }}
+            domain={["auto", "auto"]}
           />
           <CartesianGrid strokeDasharray="4" />
           <Tooltip contentStyle={{ backgroundColor: colors.background }} />
-
-          <Area
-            dataKey="totalSales"
-            type="monotone"
-            stroke={colors.totalSales.stroke}
-            fill={colors.totalSales.fill}
-            strokeWidth={2}
-            name="Total sales"
-          />
           <Area
             dataKey="price"
             type="monotone"

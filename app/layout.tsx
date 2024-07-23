@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import Navbar from "./components/navbar/Navbar";
 import { Toaster } from "@/components/ui/sonner";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -22,29 +23,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
-      <body
-        style={{ fontFamily: "var(--font-roboto)" }}
-        className={`${cn(roboto.variable)}`}
-      >
-        <QueryClientProvider client={client}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className="h-svh overflow-hidden grid grid-cols-[230px_auto]">
-              <SideBar />
-              <div>
-                <Navbar />
-                <main>{children}</main>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning={true}>
+        <body
+          style={{ fontFamily: "var(--font-roboto)" }}
+          className={`${cn(roboto.variable)}`}
+        >
+          <QueryClientProvider client={client}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <div className="h-svh overflow-hidden grid grid-cols-[230px_auto]">
+                <SideBar />
+                <div>
+                  <Navbar />
+                  <main>{children}</main>
+                </div>
               </div>
-            </div>
-            <Toaster />
-          </ThemeProvider>
-        </QueryClientProvider>
-      </body>
-    </html>
+              <Toaster />
+            </ThemeProvider>
+          </QueryClientProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

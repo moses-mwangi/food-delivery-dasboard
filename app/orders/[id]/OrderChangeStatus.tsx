@@ -8,7 +8,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import DeleteButton from "./DeleteButton";
-import useOrder from "../useOrder";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 

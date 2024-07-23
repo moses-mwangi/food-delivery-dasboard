@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import {
   Table,
@@ -69,12 +69,14 @@ export default function StoresTable() {
           ))}
         </TableBody>
       </Table>
-      <Pagination
-        currentPage={currentPage}
-        pageSize={pageSize}
-        itemCount={itemCount}
-        setCurrentPage={setCurrentPage}
-      />
+      <Suspense fallback={<p>Loading..</p>}>
+        <Pagination
+          currentPage={currentPage}
+          pageSize={pageSize}
+          itemCount={itemCount}
+          setCurrentPage={setCurrentPage}
+        />
+      </Suspense>
     </Card>
   );
 }

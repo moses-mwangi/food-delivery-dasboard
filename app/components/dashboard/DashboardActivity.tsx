@@ -11,11 +11,22 @@ import {
 } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import useOrder from "@/app/orders/useOrder";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function DashboardActivity() {
   const { sortedOrder, isLoading, ordersError } = useOrder();
 
-  if (isLoading) <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="flex justify-between gap-2">
+        <Card className="w-full h-80 bg-gray-100">
+          <Skeleton className="w-full h-80 bg-gray-100" />
+        </Card>
+        <Card className="w-full h-80 bg-gray-100">
+          <Skeleton className="w-full h-80 bg-gray-100" />
+        </Card>
+      </div>
+    );
   if (ordersError) <p>Errorf...</p>;
 
   const recentOrders = sortedOrder?.slice(0, 5);

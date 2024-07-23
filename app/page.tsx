@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Dashboard from "./components/dashboard/Dashboard";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Food Delivery Dashboard",
@@ -10,7 +11,9 @@ export default function page() {
   return (
     <main className="h-full">
       <div className="overflow-y-scroll h-[90svh]">
-        <Dashboard />
+        <Suspense fallback={<p>Loading...</p>}>
+          <Dashboard />
+        </Suspense>
       </div>
     </main>
   );

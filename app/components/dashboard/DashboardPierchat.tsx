@@ -40,7 +40,7 @@ function prepareData(salesData: SalesData[], orders: Order[]) {
       else if (totalAmount <= 40) acc[4].value += 1;
       else if (totalAmount <= 42) acc[5].value += 1;
       else acc[6].value += 1;
-      console.log(acc[0].value);
+
       return acc;
     },
     [...salesData]
@@ -50,10 +50,7 @@ function prepareData(salesData: SalesData[], orders: Order[]) {
 }
 
 export default function DashboardPieChart() {
-  const { sortedOrder, isLoading, ordersError } = useOrder();
-
-  if (isLoading) return <p>Loading...</p>;
-  if (ordersError) return <p>{ordersError?.message}</p>;
+  const { sortedOrder, isLoading } = useOrder();
 
   const data = prepareData(initialSalesData, sortedOrder || []);
 

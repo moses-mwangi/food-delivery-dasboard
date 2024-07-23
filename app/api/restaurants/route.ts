@@ -1,6 +1,6 @@
 import clientPromise from "@/lib/mongodb";
+import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
-// import clientPromise from "../../../lib/mongodb";
 
 export async function GET(req: NextRequest) {
   try {

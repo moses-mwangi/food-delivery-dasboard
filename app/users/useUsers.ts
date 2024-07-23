@@ -1,20 +1,33 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { TypeRestaurant } from "../types";
+import { Order, TypeRestaurant, User } from "../types";
 import axios from "axios";
+import { useSearchParams } from "next/navigation";
 
-export default function useUsers() {
+export default function useFetchedUser() {
+  const searchParam = useSearchParams();
+
   const {
-    data: users,
+    data: allUsers,
     error: usersError,
     isLoading,
-  } = useQuery<TypeRestaurant[]>({
+  } = useQuery<User[]>({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await axios.get<TypeRestaurant[]>(`/api/users`);
+      const response = await axios.get<User[]>(`/api/users`);
       return response.data;
     },
   });
 
-  return { users, isLoading, usersError };
+  ////////SortedOrder
+  let sortedUser = allUsers;
+  const sortBy = searchParam.get("SortBy");
+  if (sortBy === "city")
+    sortedUser = allUsers?.sort((a, b) => a.city.localeCompare(b.city));
+  if (sortBy === "name")
+    sortedUser = allUsers?.sort((a, b) => a.name.localeCompare(b.name));
+  if (sortBy === "role")
+    sortedUser = allUsers?.sort((a, b) => a.role.localeCompare(b.role));
+
+  return { sortedUser, isLoading, usersError };
 }

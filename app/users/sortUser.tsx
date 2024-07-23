@@ -11,9 +11,10 @@ import {
 } from "@/components/ui/select";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
-const sorts = [{ label: "amount" }, { label: "createdAt" }, { label: "name" }];
 
-export default function SortOrder() {
+const sorts = [{ label: "city" }, { label: "role" }, { label: "name" }];
+
+export default function SortUser() {
   const router = useRouter();
   const searchParams = useSearchParams();
 

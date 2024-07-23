@@ -7,18 +7,11 @@ import {
   Settings,
   ShoppingCart,
 } from "lucide-react";
-import { Cormorant_Upright } from "next/font/google";
 import Link from "next/link";
 import React from "react";
 import { LiaStoreSolid } from "react-icons/lia";
 import { LuExternalLink } from "react-icons/lu";
 import { usePathname } from "next/navigation";
-
-const cormorantUpright = Cormorant_Upright({
-  subsets: ["latin"],
-  weight: ["700"],
-  variable: "--font-cormorant-upright",
-});
 
 const links = [
   {

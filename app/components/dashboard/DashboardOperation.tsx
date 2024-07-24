@@ -28,7 +28,7 @@ export default function DashboardOperation() {
 
   if (isLoading)
     return (
-      <div className="flex gap-2">
+      <div className="grid grid-cols-4 md:grid-cols-2 gap-2">
         <Card className="rounded-md  h-24 w-full">
           <Skeleton className="w-full h-full bg-gray-100" />
         </Card>
@@ -45,7 +45,7 @@ export default function DashboardOperation() {
     );
 
   return (
-    <div className="flex gap-2">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
       <Card className="flex gap-3 items-center pl-5 rounded-md  h-24 w-full">
         <HiOutlineBriefcase className="w-16 h-16 p-4 rounded-full bg-blue-500" />
         <div className=" flex flex-col">
@@ -60,14 +60,14 @@ export default function DashboardOperation() {
           <span className="font-semibold text-[23px]">{`$${ordersSales}`}</span>
         </div>
       </Card>
-      <Card className="flex gap-3 items-center pl-5 rounded-md h-24 w-full">
+      <Card className="flex gap-3 items-center pl-5 rounded-md h-24 w-full 2ll:w-full">
         <HiOutlineCalendar className="w-16 h-16 p-4 rounded-full bg-indigo-600" />
         <div className=" flex flex-col">
           <span className=" text-[14px] font-medium">ARCHIVED</span>
           <span className="font-semibold text-[23px]">{`${ordersConfirmed}`}</span>
         </div>
       </Card>
-      <Card className="flex gap-3 items-center pl-5 rounded-md h-24 w-full ">
+      <Card className="flex gap-3 items-center pl-5 rounded-md h-24 w-full">
         <HiOutlineChartBar className="w-16 h-16 p-4 rounded-full bg-amber-700" />
         <div className=" flex flex-col">
           <span className=" text-[14px] font-medium">SALES RATES</span>

@@ -62,7 +62,7 @@ export default function OrderChangeStatus({ single, params }: Order) {
 
   return (
     <div>
-      <div className="flex gap-2 justify-end mb-16 items-center ml-auto w-[35%]">
+      <div className="flex gap-2 justify-end mb-16 items-center ml-auto md:w-[35%]">
         <Select
           defaultValue={searchParams.get("SortBy") || ""}
           disabled={single?.status === "Confirmed"}

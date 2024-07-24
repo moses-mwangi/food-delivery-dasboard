@@ -3,7 +3,7 @@ import SideBarContainer from "./components/sidebar/SideBarContainer";
 
 export default function SideBar() {
   return (
-    <div className="h-full border-r border-input">
+    <div className=" hidden md:block   h-full border-r border-input">
       <SideBarContainer />
     </div>
   );

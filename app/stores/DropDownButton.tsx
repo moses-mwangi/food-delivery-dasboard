@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,12 +8,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { EyeIcon, LucideEdit } from "lucide-react";
-import React from "react";
+import { LucideEdit } from "lucide-react";
 import { LuMoreVertical } from "react-icons/lu";
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import { FoodList } from "../types";
 import { useRouter } from "next/navigation";
+import { FoodList } from "../types";
 
 interface Props {
   res: {
@@ -38,15 +38,6 @@ export default function DropDownButton({ res }: Props) {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <DropdownMenuItem
-              onClick={() => {
-                router.push(`/stores/${res._id}`);
-              }}
-            >
-              <div className="flex gap-3 items-center text-gray-700">
-                <EyeIcon className="w-5 h-5 text-gray-500" /> View
-              </div>
-            </DropdownMenuItem>
             <DropdownMenuItem>
               <div className="flex gap-3 items-center text-gray-700">
                 <RiDeleteBin6Fill className="w-5 h-5 text-gray-500" /> Delete

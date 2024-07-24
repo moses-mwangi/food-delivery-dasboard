@@ -16,7 +16,7 @@ export default function FilterOrders() {
   const searchParam = useSearchParams();
 
   return (
-    <Card className="flex gap-4 rounded-sm py-[3px] px-3">
+    <Card className="flex md:flex-row flex-col  gap-4 rounded-sm py-[3px] px-3">
       {periods.map((period) => (
         <span
           key={period.label}

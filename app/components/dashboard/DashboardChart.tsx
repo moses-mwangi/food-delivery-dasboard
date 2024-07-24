@@ -48,7 +48,7 @@ export default function DashboardChart() {
   });
 
   return (
-    <Card className="rounded-md my-7 p-5">
+    <Card className="rounded-md my-7 p-5 hidden 2ll:block">
       <ResponsiveContainer width="100%" height={340}>
         <AreaChart data={data}>
           <XAxis

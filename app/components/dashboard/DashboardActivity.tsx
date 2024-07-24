@@ -32,7 +32,8 @@ export default function DashboardActivity() {
   const recentOrders = sortedOrder?.slice(0, 5);
 
   return (
-    <div className="flex justify-between gap-2">
+    // <div className="flex flex-row justify-between gap-2">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
       <Card className=" w-full rounded-md p-2 flex flex-col items-center">
         <span className=" text-[20px] font-medium my-4 flex">
           <h1
@@ -48,7 +49,7 @@ export default function DashboardActivity() {
           <TableHeader>
             <TableRow className="text-[16px]">
               <TableHead>Customer</TableHead>
-              <TableHead>Type</TableHead>
+              <TableHead className=" hidden 2ll:block">Type</TableHead>
               <TableHead>Status</TableHead>
 
               <TableHead>Amount</TableHead>
@@ -62,7 +63,9 @@ export default function DashboardActivity() {
                     <p>{pro.address.name}</p>
                   </span>
                 </TableCell>
-                <TableCell>{pro.items[0].type}</TableCell>
+                <TableCell className=" hidden 2ll:block">
+                  {pro.items[0].type}
+                </TableCell>
                 <TableCell>
                   <span
                     className={`${

@@ -35,8 +35,8 @@ export default function SingleOrderHeader({ single }: Order) {
   const router = useRouter();
   return (
     <div className="flex justify-between">
-      <div className="flex gap-10 items-center">
-        <h1 className="font-semibold text-3xl">
+      <div className="flex  gap-10 items-center">
+        <h1 className="font-semibold hidden md:block text-3xl">
           Order-Id #${single?._id.slice(0, 3)}
         </h1>
         <span className="font-medium bg-yellow-300 px-4 py-1 rounded-full">

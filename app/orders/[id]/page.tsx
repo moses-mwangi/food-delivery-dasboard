@@ -13,7 +13,7 @@ export default function SinglePage({ params }: { params: { id: string } }) {
   const single = orders?.filter((el) => el._id === params.id).at(0);
 
   return (
-    <div className=" bg-gray-50 px-10 py-12 h-svh overflow-scroll flex flex-col gap-10">
+    <div className=" bg-gray-50 px-6 md:px-10 py-12 h-svh overflow-scroll flex flex-col gap-10">
       <SingleOrderHeader single={single} />
       <SingleOrderTable single={single} />
       <Separator />

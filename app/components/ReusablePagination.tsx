@@ -35,15 +35,16 @@ export default function Pagination({
   }
 
   return (
-    <div className="flex justify-between items-center bg-gray-100 px-4 py-2">
+    <div className="flex justify-between items-center bg-gray-100 px-1 md:px-4 py-2">
       <div className="text-slate-700">
-        <span className="text-[15px]">
-          Showing {pages} to {pageCount} of {itemCount} results
+        <span className="md:text-[15px] text-[14px]">
+          {/* Showing {pages} to {pageCount} of {itemCount} results */}
+          Showing {pages} page of {pageCount}
         </span>
       </div>
-      <div className="flex gap-8 items-center">
+      <div className="flex gap-2 md:gap-8 items-center">
         <button
-          className="flex items-center disabled:cursor-not-allowed disabled:opacity-70 gap-2 text-gray-700 py-2 px-3 rounded-md hover:bg-blue-700 transition-all duration-200 cursor-pointer hover:text-slate-200"
+          className="flex items-center disabled:cursor-not-allowed disabled:opacity-70 gap-1 text-gray-700 py-1 md:py-2 px-1 md:px-3 rounded-md hover:bg-blue-700 transition-all duration-200 cursor-pointer hover:text-slate-200"
           disabled={pages <= 1}
           onClick={() => {
             setPages((set) => (set -= 1));
@@ -51,17 +52,19 @@ export default function Pagination({
           }}
         >
           <ChevronLeft className="w-5 h-5" />
-          <span className="text-[15px] font-medium">Previous</span>
+          <span className="text-[15px] font-medium hidden md:block">
+            Previous
+          </span>
         </button>
         <button
-          className="flex items-center disabled:cursor-not-allowed disabled:opacity-70 gap-2 text-gray-700 py-2 px-3 rounded-md hover:bg-blue-700 transition-all duration-200 cursor-pointer hover:text-slate-200"
+          className="flex items-center disabled:cursor-not-allowed disabled:opacity-70 gap-1 text-gray-700 py-1 md:py-2 px-1 md:px-3 rounded-md hover:bg-blue-700 transition-all duration-200 cursor-pointer hover:text-slate-200"
           disabled={pages === pageCount}
           onClick={() => {
             setPages((set) => (set += 1));
             changePages(pages + 1);
           }}
         >
-          <span className="text-[15px] font-medium ">Next</span>
+          <span className="text-[15px] font-medium hidden md:block">Next</span>
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>

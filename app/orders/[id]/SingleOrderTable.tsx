@@ -89,7 +89,7 @@ export default function SingleOrderTable({ single }: Order) {
               <TableHead>Name</TableHead>
               <TableHead>Price</TableHead>
               <TableHead>Rating</TableHead>
-              <TableHead>Description</TableHead>
+              <TableHead className="md:block hidden">Description</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -98,7 +98,9 @@ export default function SingleOrderTable({ single }: Order) {
                 <TableCell>{acc.type}</TableCell>
                 <TableCell>{acc.price}</TableCell>
                 <TableCell>{acc.rating}</TableCell>
-                <TableCell>{acc.description}</TableCell>
+                <TableCell className="md:block hidden">
+                  {acc.description}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

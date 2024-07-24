@@ -63,7 +63,7 @@ export default function AddingStores() {
 
   return (
     <div className="mt-10">
-      <Card className=" w-[60%] mx-auto px-5 py-3">
+      <Card className=" w-full 2ll:w-[90%] md:w-[60%] mx-auto px-4 py-3">
         <form className="flex flex-col gap-6" onSubmit={handleSubmit(submit)}>
           <div>
             <Label>Restaurant Name</Label>

@@ -38,10 +38,10 @@ export default function OrdersTable() {
         <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>
-            <TableHead>Email</TableHead>
+            <TableHead className=" hidden lg:block">Email</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Total Amount</TableHead>
-            <TableHead className="">Created At</TableHead>
+            <TableHead className=" hidden md:block">Created At</TableHead>
             <TableHead className=""></TableHead>
           </TableRow>
         </TableHeader>
@@ -49,7 +49,9 @@ export default function OrdersTable() {
           {ordersPerPage?.map((el) => (
             <TableRow key={el._id}>
               <TableCell>{el.address.name}</TableCell>
-              <TableCell>{el.address.email}</TableCell>
+              <TableCell className=" hidden lg:block">
+                {el.address.email}
+              </TableCell>
               <TableCell>
                 <span
                   className={`${
@@ -64,7 +66,7 @@ export default function OrdersTable() {
                 </span>
               </TableCell>
               <TableCell>{`$${el.totalAmount}`}</TableCell>
-              <TableCell className="">
+              <TableCell className=" hidden md:block">
                 {new Date(el.date).toDateString()}
               </TableCell>
               <TableCell className="">

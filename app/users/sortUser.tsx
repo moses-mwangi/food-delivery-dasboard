@@ -19,7 +19,7 @@ export default function SortUser() {
   const searchParams = useSearchParams();
 
   return (
-    <Card className=" rounded-md ">
+    <Card className="md:block hidden rounded-md ">
       <Select
         defaultValue={searchParams.get("SortBy") || ""}
         onValueChange={(order) => {

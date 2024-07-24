@@ -1,5 +1,7 @@
 "use client";
 import React, { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import {
   Table,
@@ -9,11 +11,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Image from "next/image";
 import restName from "../../public/images/food.png";
 import DropDownButton from "./DropDownButton";
 import useStore from "./useStore";
-import { useSearchParams } from "next/navigation";
 import Pagination from "../components/ReusablePagination";
 
 export default function StoresTable() {
@@ -40,17 +40,17 @@ export default function StoresTable() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="">Image</TableHead>
+            <TableHead className="md:block hidden">Image</TableHead>
             <TableHead>Store Name</TableHead>
             <TableHead>Location</TableHead>
-            <TableHead className="">Delivery Price</TableHead>
+            <TableHead>Delivery Price</TableHead>
             <TableHead className=""></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {storesPerPage?.map((res) => (
             <TableRow key={res._id}>
-              <TableCell>
+              <TableCell className="md:block hidden">
                 <Image
                   className=" rounded-[2px]"
                   src={restName}

@@ -35,7 +35,7 @@ export default function OrdersTable() {
         <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>
-            <TableHead>Email</TableHead>
+            <TableHead className="lg:block hidden">Email</TableHead>
             <TableHead>Role</TableHead>
             <TableHead>City</TableHead>
             <TableHead>Address</TableHead>
@@ -45,7 +45,7 @@ export default function OrdersTable() {
           {usersPerPage?.map((el) => (
             <TableRow key={el._id}>
               <TableCell>{el.name}</TableCell>
-              <TableCell>{el.email}</TableCell>
+              <TableCell className="lg:block hidden">{el.email}</TableCell>
               <TableCell>{el.role}</TableCell>
               <TableCell>{el.city}</TableCell>
               <TableCell>{el.address}</TableCell>

@@ -4,9 +4,8 @@ import UserTable from "./UserTable";
 
 export default function UsersPage() {
   return (
-    <div className="overflow-y-scroll h-[90svh] flex flex-col gap-10 px-10 py-8 bg-gray-50">
+    <div className="overflow-y-scroll h-[90svh] flex flex-col gap-10 px-2 lg:px-10 py-6 lg:py-8 bg-gray-50">
       <UserHeader />
-
       <Suspense fallback={<p>Loading...</p>}>
         <UserTable />
       </Suspense>

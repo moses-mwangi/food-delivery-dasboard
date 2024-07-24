@@ -84,8 +84,8 @@ export default function UpdateStore() {
   };
 
   return (
-    <div className="">
-      <Card className="w-[60%] mx-auto px-5 py-3 mb-16">
+    <div className="px-4">
+      <Card className="md:w-[760%] w-full mx-auto px-5 py-3 mb-16">
         <form className="flex flex-col gap-6" onSubmit={handleSubmit(submit)}>
           <div>
             <Label>Restaurant Name</Label>

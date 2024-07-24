@@ -40,22 +40,19 @@ export default function UserSignPage() {
 
   return (
     <div>
-      <div className="flex gap-10">
-        {!isAuth ? (
-          <Link
-            className="font-medium text-slate-600/85 text-[14px] border-solid border border-input rounded-full px-3 py-[6px] hover:text-orange-600 transition-all duration-150"
-            href="/sign-up"
-          >
-            Sign Up
-          </Link>
-        ) : (
-          <div className="flex gap-2 items-center">
-            <UserButton afterSignOutUrl="/" />
-            {/* <p>{user?.emailAddresses[0].emailAddress}</p> */}
-            <p>{user?.firstName}</p>
-          </div>
-        )}
-      </div>
+      {!isAuth ? (
+        <Link
+          className="font-medium text-slate-600/85 text-[14px] border-solid border border-input rounded-full px-2 py-[6px] hover:text-orange-600 transition-all duration-150"
+          href="/sign-up"
+        >
+          Sign Up
+        </Link>
+      ) : (
+        <div className="flex gap-2 items-center">
+          <UserButton afterSignOutUrl="/" />
+          <p className="md:block hidden">{user?.firstName}</p>
+        </div>
+      )}
     </div>
   );
 }

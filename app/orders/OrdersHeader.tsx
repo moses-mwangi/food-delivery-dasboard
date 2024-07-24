@@ -6,10 +6,7 @@ import OrderPopUpHeader from "./OrderPopUpHeader";
 export default function OrdersHeader() {
   return (
     <>
-      <Suspense>
-        <OrderPopUpHeader />
-      </Suspense>
-
+      <OrderPopUpHeader />
       <div className="lg:flex hidden justify-between items-center">
         <h1 className="text-3xl font-semibold text-slate-700">
           All Our Orders

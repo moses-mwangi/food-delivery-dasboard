@@ -36,7 +36,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="h-svh overflow-hidden grid md:grid-cols-[230px_auto]">
+              <div className="h-svh overflow-hidden grid md:grid-cols-[210px_auto] lg:grid-cols-[230px_auto]">
                 <SideBar />
                 <div>
                   <Navbar />

@@ -48,11 +48,14 @@ export default function OrderChangeStatus({ single, params }: Order) {
 
   const updateOrder = async () => {
     try {
-      const response = await axios.patch(`/api/orders/${params.id}`, {
-        status: searchParams.get("Status")
-          ? searchParams.get("Status")
-          : "Confirmed",
-      });
+      const response = await axios.patch(
+        `http://127.0.0.1:3003/api/orders/${params.id}`,
+        {
+          status: searchParams.get("Status")
+            ? searchParams.get("Status")
+            : "Confirmed",
+        }
+      );
 
       console.log("Order updated:", response.data);
     } catch (error) {

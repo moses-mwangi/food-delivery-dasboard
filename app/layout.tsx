@@ -32,8 +32,8 @@ export default function RootLayout({
           <QueryClientProvider client={client}>
             <ThemeProvider
               attribute="class"
-              defaultTheme="system"
-              enableSystem
+              defaultTheme="light"
+              // enableSystem
               disableTransitionOnChange
             >
               <div className="h-svh overflow-hidden grid md:grid-cols-[210px_auto] lg:grid-cols-[230px_auto]">

@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Order, TypeRestaurant } from "../types";
+import { Orders } from "../types";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 
@@ -11,15 +11,18 @@ export default function useOrder() {
     data: orders,
     error: ordersError,
     isLoading,
-  } = useQuery<Order[]>({
+  } = useQuery<Orders>({
     queryKey: ["orders"],
     queryFn: async () => {
-      const response = await axios.get<Order[]>(`/api/orders`);
+      const response = await axios.get<Orders>(
+        `http://127.0.0.1:3003/api/orders/place`
+      );
+
       return response.data;
     },
   });
 
-  const arrangeOrdersToDate = orders?.sort(
+  const arrangeOrdersToDate = orders?.data.order.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
@@ -44,5 +47,5 @@ export default function useOrder() {
   if (sortBy === "amount")
     sortedOrder = operatedOrder?.sort((a, b) => a.totalAmount - b.totalAmount);
 
-  return { orders, sortedOrder, isLoading, ordersError };
+  return { sortedOrder, isLoading, ordersError };
 }

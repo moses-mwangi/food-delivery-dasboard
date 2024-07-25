@@ -8,19 +8,21 @@ export default function useStore() {
   const searchParam = useSearchParams();
 
   const {
-    data: stores,
+    data: storess,
     error: storeError,
     isLoading,
-  } = useQuery<TypeRestaurant[]>({
+  } = useQuery<TypeRestaurant>({
     queryKey: ["restaurants"],
     queryFn: async () => {
-      const response = await axios.get<TypeRestaurant[]>(`/api/restaurants`);
+      const response = await axios.get<TypeRestaurant>(
+        `http://127.0.0.1:3003/api/restaurants`
+      );
       return response.data;
     },
   });
 
   ////////SortedOrder
-  let sortedStores = stores;
+  let sortedStores = storess?.data.data;
   const sortBy = searchParam.get("SortBy");
 
   if (sortBy === "Name")
@@ -31,6 +33,8 @@ export default function useStore() {
     sortedStores = sortedStores?.sort(
       (a, b) => a.deliveryPrice - b.deliveryPrice
     );
+
+  const stores = sortedStores;
 
   return { stores, isLoading, storeError };
 }

@@ -15,7 +15,7 @@ export default function UserSignPage() {
           const token = await getToken();
           try {
             await axios.post(
-              "/api/proxyUser",
+              "http://127.0.0.1:3003/api/users/signup",
               {
                 name: user.firstName + " " + user.lastName,
                 email: user.emailAddresses[0].emailAddress,

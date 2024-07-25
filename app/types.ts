@@ -1,15 +1,19 @@
 import { SetStateAction } from "react";
 
 export interface User {
-  id: string;
-  email: string;
-  role: string;
-  name: string;
-  photo?: string;
-  city: string;
-  address: string;
-  country: string;
-  _id: string;
+  data: {
+    data: {
+      id: string;
+      email: string;
+      role: string;
+      name: string;
+      photo?: string;
+      city: string;
+      address: string;
+      country: string;
+      _id: string;
+    }[];
+  };
 }
 
 export interface FoodList {
@@ -23,12 +27,16 @@ export interface FoodList {
 }
 
 export interface TypeRestaurant {
-  _id: string;
-  image: string;
-  restName: string;
-  location: string;
-  deliveryPrice: number;
-  food_lists: FoodList[];
+  data: {
+    data: {
+      _id: string;
+      image: string;
+      restName: string;
+      location: string;
+      deliveryPrice: number;
+      food_lists: FoodList[];
+    }[];
+  };
 }
 
 export interface Order {
@@ -55,4 +63,34 @@ export interface Order {
       price: number;
     }
   ];
+}
+
+export interface Orders {
+  data: {
+    order: {
+      _id: string;
+      status: string;
+      totalAmount: number;
+      date: Date;
+      payment: boolean;
+      address: {
+        _id: string;
+        name: string;
+        email: string;
+        country: string;
+        city: string;
+        address: string;
+      };
+      items: [
+        {
+          _id: string;
+
+          type: string;
+          description: string;
+          rating: number;
+          price: number;
+        }
+      ];
+    }[];
+  };
 }

@@ -9,8 +9,8 @@ export default function UpdateOrderPage({
 }: {
   params: { id: string };
 }) {
-  const { orders } = useOrder();
-  const single = orders?.filter((el) => el._id === params.id);
+  const { sortedOrder } = useOrder();
+  const single = sortedOrder?.filter((el) => el._id === params.id);
 
   // const {}=useH
 

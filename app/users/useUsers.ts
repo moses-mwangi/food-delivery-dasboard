@@ -11,23 +11,31 @@ export default function useFetchedUser() {
     data: allUsers,
     error: usersError,
     isLoading,
-  } = useQuery<User[]>({
+  } = useQuery<User>({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await axios.get<User[]>(`/api/users`);
+      const response = await axios.get<User>(`http://127.0.0.1:3003/api/users`);
+
       return response.data;
     },
   });
 
   ////////SortedOrder
-  let sortedUser = allUsers;
+
+  let sortedUser = allUsers?.data.data;
   const sortBy = searchParam.get("SortBy");
   if (sortBy === "city")
-    sortedUser = allUsers?.sort((a, b) => a.city.localeCompare(b.city));
+    sortedUser = allUsers?.data.data.sort((a, b) =>
+      a.city.localeCompare(b.city)
+    );
   if (sortBy === "name")
-    sortedUser = allUsers?.sort((a, b) => a.name.localeCompare(b.name));
+    sortedUser = allUsers?.data.data.sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
   if (sortBy === "role")
-    sortedUser = allUsers?.sort((a, b) => a.role.localeCompare(b.role));
+    sortedUser = allUsers?.data.data.sort((a, b) =>
+      a.role.localeCompare(b.role)
+    );
 
   return { sortedUser, isLoading, usersError };
 }

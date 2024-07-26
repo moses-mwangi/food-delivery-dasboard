@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,6 +7,8 @@ import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import React from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import useFetchedUser from "@/app/users/useUsers";
 import { toast } from "sonner";
 
 interface FoodItem {
@@ -27,6 +28,13 @@ interface FormData {
 
 export default function AddingStores() {
   const router = useRouter();
+  const { user } = useUser();
+  const { sortedUser } = useFetchedUser();
+
+  const currentUser = sortedUser?.filter(
+    (el) => el.email === user?.emailAddresses[0].emailAddress
+  );
+
   const {
     register,
     handleSubmit,
@@ -55,10 +63,18 @@ export default function AddingStores() {
       restName: data.restName,
     };
 
-    await axios.post("http://127.0.0.1:3003/api/restaurants", dat);
-
-    toast.success("You have succesfully added new stores");
-    router.push("/stores");
+    try {
+      if (currentUser && currentUser[0].role === "admin") {
+        await axios.post("http://127.0.0.1:3003/api/restaurants", dat);
+        toast.success("You have succesfully added new stores");
+        router.push("/stores");
+      } else {
+        toast.success("Only admin user can perfom that task");
+      }
+    } catch (error) {
+      toast.error("Error in confirming Order", error!);
+      console.error("Error updating order:", error);
+    }
   };
 
   return (

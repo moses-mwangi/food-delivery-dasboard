@@ -13,11 +13,14 @@ import {
 import { useRouter, useSearchParams } from "next/navigation";
 import { GoPlus } from "react-icons/go";
 import StorePopUpHeader from "./StorePopUpHeader";
+import { useUser } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 const sorts = [{ label: "Name" }, { label: "Price" }];
 export default function StoresHeader() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { user } = useUser();
 
   return (
     <>
@@ -51,7 +54,14 @@ export default function StoresHeader() {
           <Button
             className="h-10 bg-blue-700 hover:bg-blue-800 rounded-md"
             onClick={() => {
-              router.push("/stores/addStore");
+              if (user) {
+                router.push("/stores/addStore");
+              } else {
+                toast.success(
+                  "You must signin first to be able to perfom the task"
+                );
+              }
+              console.log("moses");
             }}
           >
             <GoPlus className="w-[18px] h-[18px] border border-white rounded-full mr-[6px] text-white" />{" "}

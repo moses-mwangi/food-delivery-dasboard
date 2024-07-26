@@ -6,7 +6,7 @@ export default function UserHeader() {
     <div className="flex  justify-between items-center">
       <h1 className="text-3xl font-semibold text-slate-700">All Our Users</h1>
       <div className="flex gap-4">
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<div>Loading...</div>}>
           <SortUser />
         </Suspense>
       </div>

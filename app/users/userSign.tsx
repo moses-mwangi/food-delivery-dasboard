@@ -2,15 +2,22 @@ import { useAuth, UserButton, useUser } from "@clerk/nextjs";
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect } from "react";
+import useFetchedUser from "./useUsers";
 
 export default function UserSignPage() {
   const { isSignedIn, user } = useUser();
   const { userId, getToken } = useAuth();
   const isAuth = !!userId;
 
+  const { sortedUser } = useFetchedUser();
+
+  const checkingUser = sortedUser?.find(
+    (el) => el.email === user?.emailAddresses[0].emailAddress
+  );
+
   useEffect(() => {
     setTimeout(() => {
-      if (isSignedIn && user && user.emailAddresses[0].emailAddress) {
+      if (isSignedIn && user && !checkingUser) {
         const postUserData = async () => {
           const token = await getToken();
           try {
@@ -36,7 +43,7 @@ export default function UserSignPage() {
         postUserData();
       }
     }, 3000);
-  }, [isSignedIn, user, getToken]);
+  }, [isSignedIn, user, getToken, checkingUser]);
 
   return (
     <div>

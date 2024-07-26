@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  HomeIcon,
-  LucideBox,
-  LucideUsers2,
-  Settings,
-  ShoppingCart,
-} from "lucide-react";
+import { HomeIcon, LucideUsers2, Settings, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { LiaStoreSolid } from "react-icons/lia";
@@ -17,7 +11,7 @@ const links = [
   {
     label: "My Website",
     icon: <LuExternalLink className="w-[22px] h-[22px]" />,
-    ref: "http://localhost:3001/",
+    ref: "https://food-delivery-five-eta.vercel.app/",
   },
   {
     label: "Home",

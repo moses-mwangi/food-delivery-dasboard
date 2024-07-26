@@ -8,6 +8,7 @@ import { ThemeProvider } from "next-themes";
 import Navbar from "./components/navbar/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Suspense } from "react";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -33,17 +34,18 @@ export default function RootLayout({
             <ThemeProvider
               attribute="class"
               defaultTheme="light"
-              // enableSystem
               disableTransitionOnChange
             >
               <div className="h-svh overflow-hidden grid md:grid-cols-[210px_auto] lg:grid-cols-[230px_auto]">
                 <SideBar />
                 <div>
                   <Navbar />
+                  <Toaster position="top-center" />
+                  {/* <Suspense fallback={<p>Loading...</p>}> */}
                   <main>{children}</main>
+                  {/* </Suspense> */}
                 </div>
               </div>
-              <Toaster />
             </ThemeProvider>
           </QueryClientProvider>
         </body>

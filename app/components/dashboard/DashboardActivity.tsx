@@ -49,9 +49,7 @@ export default function DashboardActivity() {
           <TableHeader>
             <TableRow className="text-[16px]">
               <TableHead>Customer</TableHead>
-              <TableHead className=" hidden 2ll:block">Type</TableHead>
               <TableHead>Status</TableHead>
-
               <TableHead>Amount</TableHead>
             </TableRow>
           </TableHeader>
@@ -63,18 +61,15 @@ export default function DashboardActivity() {
                     <p>{pro.address.name}</p>
                   </span>
                 </TableCell>
-                <TableCell className=" hidden 2ll:block">
-                  {pro.items[0].type}
-                </TableCell>
                 <TableCell>
                   <span
                     className={`${
                       pro.status === "Confirmed"
-                        ? "bg-blue-100 text-blue-800"
+                        ? "bg-blue-100 text-blue-900"
                         : pro.status === "Food Processing"
                         ? " bg-yellow-200 text-slate-700"
                         : "bg-red-100"
-                    } py-1 px-2 rounded-full text-slate-800`}
+                    } py-1 px-2 rounded-full text-slate-800 font-medium`}
                   >
                     {pro.status}
                   </span>

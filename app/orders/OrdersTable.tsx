@@ -37,7 +37,7 @@ export default function OrdersTable() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Name</TableHead>
+            <TableHead className="">Name</TableHead>
             <TableHead className=" hidden lg:block">Email</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Total Amount</TableHead>
@@ -45,6 +45,7 @@ export default function OrdersTable() {
             <TableHead className=""></TableHead>
           </TableRow>
         </TableHeader>
+
         <TableBody>
           {ordersPerPage?.map((el) => (
             <TableRow key={el._id}>
@@ -56,7 +57,7 @@ export default function OrdersTable() {
                 <span
                   className={`${
                     el.status === "Confirmed"
-                      ? "bg-blue-100 text-blue-800"
+                      ? "bg-blue-100 text-blue-700"
                       : el.status === "Food Processing"
                       ? " bg-yellow-200"
                       : "bg-red-100"

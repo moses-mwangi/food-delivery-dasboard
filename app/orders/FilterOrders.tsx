@@ -22,7 +22,7 @@ export default function FilterOrders() {
           key={period.label}
           className={`${
             period.value.toString() === searchParam.get("periods")
-              ? "bg-blue-600 text-slate-100"
+              ? "bg-blue-600 text-slate-200"
               : ""
           } hover:bg-blue-600 px-3 py-1 text-slate-700 hover:text-slate-100  rounded-md cursor-pointer transition-colors`}
           onClick={() => {

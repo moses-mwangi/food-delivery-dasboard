@@ -10,6 +10,9 @@ import {
 import DeleteButton from "./DeleteButton";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
+import { useUser } from "@clerk/nextjs";
+import useFetchedUser from "@/app/users/useUsers";
+import { toast } from "sonner";
 
 interface Order {
   single:
@@ -45,20 +48,29 @@ interface Order {
 export default function OrderChangeStatus({ single, params }: Order) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { user } = useUser();
+  const { sortedUser } = useFetchedUser();
+
+  const currentUser = sortedUser?.filter(
+    (el) => el.email === user?.emailAddresses[0].emailAddress
+  );
 
   const updateOrder = async () => {
     try {
-      const response = await axios.patch(
-        `http://127.0.0.1:3003/api/orders/${params.id}`,
-        {
-          status: searchParams.get("Status")
-            ? searchParams.get("Status")
-            : "Confirmed",
-        }
-      );
+      if (currentUser && currentUser[0].role === "admin") {
+        await axios.patch(
+          `http://127.0.0.1:3003/api/orders/place/${params.id}`,
+          {
+            status: "Confirmed",
+          }
+        );
 
-      console.log("Order updated:", response.data);
+        toast.success("Order has being succesfully confirmed");
+      } else {
+        toast.success("Only admin user can perfom that task");
+      }
     } catch (error) {
+      toast.error("Error in confirming Order", error!);
       console.error("Error updating order:", error);
     }
   };

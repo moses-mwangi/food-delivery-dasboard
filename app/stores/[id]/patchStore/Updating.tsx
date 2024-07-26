@@ -33,7 +33,6 @@ export default function UpdateStore() {
     register,
     handleSubmit,
     control,
-    setValue,
     reset,
     formState: { errors },
   } = useForm<FormData>();
@@ -85,7 +84,7 @@ export default function UpdateStore() {
 
   return (
     <div className="px-4">
-      <Card className="md:w-[760%] w-full mx-auto px-5 py-3 mb-16">
+      <Card className="md:w-[80%] w-full mx-auto px-5 py-3 mb-16">
         <form className="flex flex-col gap-6" onSubmit={handleSubmit(submit)}>
           <div>
             <Label>Restaurant Name</Label>
@@ -162,7 +161,7 @@ export default function UpdateStore() {
                   />
                 </div>
                 <Button
-                  className="bg-blue-600/85 hover:bg-blue-700 mt-6"
+                  className="bg-blue-600/85 text-slate-100 hover:bg-blue-700 mt-6"
                   type="button"
                   onClick={() => remove(index)}
                 >
@@ -171,7 +170,7 @@ export default function UpdateStore() {
               </div>
             ))}
             <Button
-              className="bg-blue-600/85 hover:bg-blue-700 mt-3"
+              className="bg-blue-600/85 text-slate-100 hover:bg-blue-700 mt-3"
               type="button"
               onClick={() =>
                 append({
@@ -186,7 +185,10 @@ export default function UpdateStore() {
             </Button>
           </div>
 
-          <Button type="submit" className="bg-blue-600/85 hover:bg-blue-700">
+          <Button
+            type="submit"
+            className="bg-blue-600/85 text-slate-100 hover:bg-blue-700"
+          >
             Submit
           </Button>
         </form>

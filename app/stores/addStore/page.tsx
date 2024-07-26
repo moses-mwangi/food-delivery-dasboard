@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import AddingStores from "./AddingStores";
 
 export default function AddingStorePage() {
@@ -10,7 +10,9 @@ export default function AddingStorePage() {
         </h1>
       </div>
       <div>
-        <AddingStores />
+        <Suspense fallback={<div>Loading...</div>}>
+          <AddingStores />
+        </Suspense>
       </div>
     </div>
   );

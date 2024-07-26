@@ -14,6 +14,10 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { Order } from "../types";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import axios from "axios";
+import useOrder from "./useOrder";
+import { useUser } from "@clerk/nextjs";
+import useFetchedUser from "../users/useUsers";
 
 interface Prop {
   order: Order;
@@ -21,6 +25,35 @@ interface Prop {
 
 export default function DropDownButton({ order }: Prop) {
   const router = useRouter();
+  const { sortedOrder } = useOrder();
+  const { user } = useUser();
+  const { sortedUser } = useFetchedUser();
+
+  async function onDelete(id: string) {
+    const currentUser = sortedUser?.filter(
+      (el) => el.email === user?.emailAddresses[0].emailAddress
+    );
+
+    try {
+      if (user && currentUser && currentUser[0].role === "admin") {
+        await axios.delete(`http://127.0.0.1:3003/api/orders/place/${id}`);
+        toast.success("Order has being succesfully deleted");
+
+        router.push("/orders");
+        router.refresh();
+      } else {
+        if (!user)
+          return toast.success(
+            "You must signin first to be able to perfom the task"
+          );
+
+        toast.success("Only admin user can perfom that task");
+      }
+    } catch (err) {
+      toast.error("Error in deleting Order", err!);
+      console.error(err);
+    }
+  }
 
   return (
     <div>
@@ -36,7 +69,13 @@ export default function DropDownButton({ order }: Prop) {
               <div
                 className="flex gap-3 items-center text-gray-700"
                 onClick={() => {
-                  router.push(`/orders/${order._id}`);
+                  if (user) {
+                    router.push(`/orders/${order._id}`);
+                  } else {
+                    toast.success(
+                      "You must signin first to be able to perfom the task"
+                    );
+                  }
                 }}
               >
                 <EyeIcon className="w-5 h-5 text-gray-500" /> View
@@ -46,13 +85,7 @@ export default function DropDownButton({ order }: Prop) {
               <div
                 className="flex gap-3 items-center text-gray-700"
                 onClick={() => {
-                  toast("Order deletion canceled", {
-                    description: "Only admin users can delete",
-                    action: {
-                      label: "remove",
-                      onClick: () => console.log("Undo"),
-                    },
-                  });
+                  onDelete(order._id);
                 }}
               >
                 <RiDeleteBin6Fill className="w-5 h-5 text-gray-500" /> Delete

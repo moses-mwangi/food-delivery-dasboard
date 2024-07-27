@@ -11,7 +11,7 @@ const links = [
   {
     label: "My Website",
     icon: <LuExternalLink className="w-[22px] h-[22px]" />,
-    ref: "https://food-delivery-five-eta.vercel.app/",
+    ref: "https://food-delivery-bkrk.vercel.app/",
   },
   {
     label: "Home",

@@ -10,6 +10,8 @@ import axios from "axios";
 import { useRouter, useParams } from "next/navigation";
 import { toast } from "sonner";
 import useStore from "../../useStore";
+import useFetchedUser from "@/app/users/useUsers";
+import { useUser } from "@clerk/nextjs";
 
 interface FoodItem {
   type: string;
@@ -29,6 +31,13 @@ export default function UpdateStore() {
   const { id } = useParams();
   const router = useRouter();
   const { stores } = useStore();
+  const { user } = useUser();
+  const { sortedUser } = useFetchedUser();
+
+  const currentUser = sortedUser?.filter(
+    (el) => el.email === user?.emailAddresses[0].emailAddress
+  );
+
   const {
     register,
     handleSubmit,
@@ -70,12 +79,16 @@ export default function UpdateStore() {
     };
 
     try {
-      await axios.patch(
-        `http://127.0.0.1:3003/api/restaurants/${store?.restName}`,
-        dat
-      );
-      toast.success("Store updated successfully");
-      router.push("/stores");
+      if (currentUser && currentUser[0].role === "admin") {
+        await axios.patch(
+          `http://127.0.0.1:3003/api/restaurants/${store?.restName}`,
+          dat
+        );
+        toast.success("Store updated successfully");
+        router.push("/stores");
+      } else {
+        toast.success("Only admin user can perfom that task");
+      }
     } catch (error) {
       console.error("Error updating store:", error);
       toast.error("Failed to update store");

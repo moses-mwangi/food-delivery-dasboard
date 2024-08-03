@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -35,6 +34,7 @@ export default function UpdatingUserRole() {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     const validateUser = sortedUser?.find((el) => el.email === data.email);
+    console.log(validateUser);
 
     try {
       if (

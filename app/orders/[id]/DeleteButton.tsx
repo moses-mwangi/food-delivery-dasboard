@@ -22,6 +22,8 @@ export default function DeleteButton() {
   );
 
   async function onDelete() {
+    console.log(currentUser, id);
+
     try {
       if (currentUser && currentUser[0].role === "admin") {
         await axios.delete(
@@ -34,7 +36,8 @@ export default function DeleteButton() {
         toast.success("Only admin user can perfom that task");
       }
     } catch (err) {
-      toast.error("Error in deleting Order", err!);
+      toast.error("Error in deleting Order");
+      console.log(currentUser, id);
       console.error(err);
     }
   }

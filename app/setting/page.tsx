@@ -44,7 +44,7 @@ export default function UpdatingUserRole() {
         currentUser[0].role === "admin"
       ) {
         await axios.patch(
-          `http://127.0.0.1:3003/api/users/${validateUser._id}`,
+          `https://food-backend-xi.vercel.app/api/users/${validateUser._id}`,
           { role: data.role }
         );
         toast.success("You have succesfully updated user role");

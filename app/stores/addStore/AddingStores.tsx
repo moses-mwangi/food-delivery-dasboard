@@ -65,7 +65,10 @@ export default function AddingStores() {
 
     try {
       if (currentUser && currentUser[0].role === "admin") {
-        await axios.post("http://127.0.0.1:3003/api/restaurants", dat);
+        await axios.post(
+          "https://food-backend-xi.vercel.app/api/restaurants",
+          dat
+        );
         toast.success("You have succesfully added new stores");
         router.push("/stores");
       } else {

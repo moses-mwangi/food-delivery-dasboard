@@ -22,7 +22,7 @@ export default function UserSignPage() {
           const token = await getToken();
           try {
             await axios.post(
-              "http://127.0.0.1:3003/api/users/signup",
+              "https://food-backend-xi.vercel.app/api/users/signup",
               {
                 name: user.firstName + " " + user.lastName,
                 email: user.emailAddresses[0].emailAddress,

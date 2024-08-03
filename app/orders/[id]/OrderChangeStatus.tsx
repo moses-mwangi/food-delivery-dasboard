@@ -59,7 +59,7 @@ export default function OrderChangeStatus({ single, params }: Order) {
     try {
       if (currentUser && currentUser[0].role === "admin") {
         await axios.patch(
-          `http://127.0.0.1:3003/api/orders/place/${params.id}`,
+          `https://food-backend-xi.vercel.app/api/orders/place/${params.id}`,
           {
             status: "Confirmed",
           }

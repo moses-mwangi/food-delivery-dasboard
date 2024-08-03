@@ -36,7 +36,9 @@ export default function DropDownButton({ order }: Prop) {
 
     try {
       if (user && currentUser && currentUser[0].role === "admin") {
-        await axios.delete(`http://127.0.0.1:3003/api/orders/place/${id}`);
+        await axios.delete(
+          `https://food-backend-xi.vercel.app/api/orders/place/${id}`
+        );
         toast.success("Order has being succesfully deleted");
 
         router.push("/orders");

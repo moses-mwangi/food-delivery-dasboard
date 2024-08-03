@@ -46,7 +46,7 @@ export default function DropDownButton({ res }: Props) {
     try {
       if (user && currentUser && currentUser[0].role === "admin") {
         await axios.delete(
-          `http://127.0.0.1:3003/api/restaurants/${store?.restName}`
+          `https://food-backend-xi.vercel.app/api/restaurants/${store?.restName}`
         );
         toast.success("You have succesfully deleted store");
         router.push("/stores");

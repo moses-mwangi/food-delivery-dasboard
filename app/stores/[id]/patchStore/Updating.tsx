@@ -81,7 +81,7 @@ export default function UpdateStore() {
     try {
       if (currentUser && currentUser[0].role === "admin") {
         await axios.patch(
-          `http://127.0.0.1:3003/api/restaurants/${store?.restName}`,
+          `https://food-backend-xi.vercel.app/api/restaurants/${store?.restName}`,
           dat
         );
         toast.success("Store updated successfully");

@@ -15,7 +15,7 @@ export default function useOrder() {
     queryKey: ["orders"],
     queryFn: async () => {
       const response = await axios.get<Orders>(
-        `http://127.0.0.1:3003/api/orders/place`
+        `https://food-backend-xi.vercel.app/api/orders/place`
       );
 
       return response.data;

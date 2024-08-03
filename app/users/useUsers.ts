@@ -14,7 +14,9 @@ export default function useFetchedUser() {
   } = useQuery<User>({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await axios.get<User>(`http://127.0.0.1:3003/api/users`);
+      const response = await axios.get<User>(
+        `https://food-backend-xi.vercel.app/api/users`
+      );
 
       return response.data;
     },
